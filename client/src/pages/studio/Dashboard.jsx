@@ -15,27 +15,6 @@ const Dashboard = () => {
     totalRevenue: 0,
   })
 
-  const fetchDashboardData = async () => {
-
-    try {
-
-      const { data} = await axios.get('/api/bookings/hotel', {headers:{Authorization:`Bearer ${await getToken()}`}}) 
-      if (data.success){
-        setDashBoardData(data.dashboardData);
-      }
-      else{
-        toast.error(data.message)
-      }
-    } catch (error) {
-        toast.error(error.message)
-    }
-  }
-
-  useEffect(() => {
-    if (user) {
-      fetchDashboardData();
-    }
-  },[user])
 
 
   return (

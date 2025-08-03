@@ -15,7 +15,7 @@ const BookIcon = () => (
 const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Artists', path: '/artists' },
+    { name: 'Studios', path: '/studios' },
     { name: 'Experience', path: '/experience' },
     { name: 'About', path: '/about' },
   ];
@@ -24,7 +24,8 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { openSignIn } = useClerk();
   const location = useLocation();
-  const {user, navigate, isArtist, setShowArtistReg} = useAppContext();
+  const {user, navigate, isStudio, setShowStudioReg} = useAppContext();
+  console.log(isStudio);
 
 
   useEffect(() => {
@@ -70,9 +71,9 @@ const Navbar = () => {
         {user && (
           <button
             className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all hover:bg-gray-300`}
-            onClick={() => (isArtist ? navigate('/owner') : setShowArtistReg(true))}
+            onClick={() => (isStudio ? navigate('/studios') : setShowStudioReg(true))}
           >
-            {isArtist ? 'Dashboard' : 'Sign as an Artist'}
+            {isStudio ? 'Dashboard' : 'Register Your Studio'}
           </button>
         )}
       </div>
@@ -127,9 +128,9 @@ const Navbar = () => {
             {user && (
               <button
                 className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all"
-                onClick={() => (isArtist ? navigate('/owner') : setShowArtistReg(true))}
+                onClick={() => (isStudio ? navigate('/studios') : setShowStudioReg(true))}
               >
-                {isArtist ? 'Dashboard' : 'Sign as an Artist'}
+                {isStudio ? 'Dashboard' : 'Register Your Studio'}
               </button>
             )}
 

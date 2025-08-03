@@ -4,26 +4,33 @@ import { Toaster } from 'react-hot-toast';
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import ArtistReg from './pages/ArtistRegistrarion';
+import StudioReg from './pages/StudioRegistration';
 import {useAppContext} from './context/AppContext'
+import Layout from './pages/studio/Layout';
+import Dashboard from './pages/studio/Dashboard';
+import AddArtist from './pages/studio/AddArtist';
 
 
 function App() {
-    const isArtistPath = useLocation().pathname.includes("artist");
-    const {showArtistReg} = useAppContext();
+    const isStudioPath = useLocation().pathname.includes("studio");
+    const {showStudioReg} = useAppContext();
 
 
 
   return (
       <div>
          <Toaster/>
-      {!isArtistPath && <Navbar />}
-      {showArtistReg && <ArtistReg />}
-      {false && <ArtistReg/>}
+      {!isStudioPath && <Navbar />}
+      {showStudioReg && <StudioReg />}
+      {false && <StudioReg/>}
       <div className='min-h-[70vh]'>
         <Routes>
           <Route path={'/'} element={<Home/>} />
           <Route path={'/home'} element={<Home/>} />
+          <Route path='/studios' element={<Layout/>}>
+          <Route index element={<Dashboard/>} />
+          <Route path='/studios/add-artist' element={<AddArtist/>}/>
+          </Route>
         </Routes>
         </div>
         <Footer/>

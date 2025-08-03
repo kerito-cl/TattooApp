@@ -7,6 +7,8 @@ import { clerkMiddleware } from "@clerk/express";
 import clerkWebHooks from "./controllers/clerkWebHooks.js";
 import getRawBody from "raw-body";
 import User from "./models/User.js";
+import studioRouter from "./routes/studioRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 import artistRouter from "./routes/artistRoutes.js";
 
 
@@ -37,7 +39,9 @@ app.use((req, res, next) => {
 
 // Now add your routes
 app.post("/api/clerk", clerkWebHooks);
-app.use("/api/artists", artistRouter)
+app.use("/api/studios", studioRouter)
+app.use('/api/user', userRouter);
+app.use('/api/artists', artistRouter);
 app.get("/", (req, res) => res.send("API is working fine"));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

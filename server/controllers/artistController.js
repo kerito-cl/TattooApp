@@ -1,24 +1,81 @@
+import Studio from "../models/Studio.js";
 import Artist from "../models/Artist.js";
-import User from "../models/User.js"
+import {v2 as cloudinary } from "cloudinary";
 
 
-export const registerArtist = async (req, res) => {
+export const createArtist = async (req, res) => {
     try {
-        const {name, address, contact , city} = req.body;
-        const owner = req.user._id;
+        console.log("Studio Found")
+        const {styles, pricePerHour} = req.body;
+        const studio = await Studio.findOne({owner: req.auth.userId})
 
-       const artist = await Artist.findOne({owner});
-       if (artist)
-       {
-        return res.json({success:false, message: "Artist already registered"})
-       }
-       await Artist.create({name, address, contact, city , owner});
-       await User.findByIdAndUpdate(owner, {role: "artist"});
+        if (!studio){
+            return res.json({success:false, message: "Studio not Found"});
+        }
+        const uploadImages = req.files.map(async(file) => {
+            const response = await cloudinary.uploader.upload(file.path);
+            return response.secure_url;
+        })
+        
+        const images = await Promise.all(uploadImages);
 
-       res.json({success:true, message: "Artist Registered Successfully"});
-
+        const parsedStyles = JSON.parse(styles);
+        await Artist.create({
+            studio:studio._id,
+            styles:parsedStyles,
+            pricePerHour:+pricePerHour,
+            images,
+        })
+        res.json({success:true, message:"Artist added succesfully"})
+        
     } catch (error) {
-       res.json({success:false, message: error.message});
+        res.json({success:false, message:error.message})
         
     }
+
+}
+
+export const getArtists = async (req, res) => {
+    try {
+        const artists = await Artist.find({isAvailable:true}).populate({
+            path:'studio',
+            populate:{
+                path:'owner',
+                select:'image'
+            }
+        }).sort({createdAt:-1})
+        res.json({success:true, artists})
+
+    } catch (error) {
+        res.json({success:false, message:error.message});
+    }
+
+}
+
+export const getStudioArtist = async (req, res) => {
+    try {
+        const studioData = await Studio.findOne({owner: req.auth.userId})
+        const artists = await Artist.find({artist:studioData._id.toString()}).populate("studio");
+        res.json({success:true, artists})
+        
+    } catch (error) {
+        res.json({success:false, message:error.message});
+        
+    }
+
+}
+
+export const toggleArtistAvailability = async (req, res) => {
+    try {
+        const {artistId} = req.body
+        const artistData = await Artist.findById(artistId);
+
+        artistData.isAvailable = !artistData.isAvailable;
+        await artistData.save();
+        res.json({success:true, message:"Artist availability Updated"});
+     
+    } catch (error) {
+        res.json({success:false, message:error.message});
+    }
+
 }

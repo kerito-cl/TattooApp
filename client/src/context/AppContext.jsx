@@ -15,15 +15,40 @@ export const AppProvider = ({children}) => {
    const {user} = useUser();
    const {getToken} = useAuth();
 
-   const [isArtist, setIsArtist] = useState();
-   const [showArtistReg, setShowArtistReg] = useState(false);
+   const [isStudio, setIsStudio] = useState();
+   const [showStudioReg, setShowStudioReg] = useState(false);
    const [searchedCities, setSearchedCities] = useState([]);
    const [rooms, setRooms] = useState([]);
 
 
+      const fetchUser = async () => {
+    try {
+        const {data} = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}`}})
+
+        if (data){
+            setIsStudio(data.role === "studio");
+            setSearchedCities(data.recentSearchedCities)
+        }
+        else{
+            setTimeout(() => {
+                fetchUser()
+            },5000);
+        }
+        
+    } catch (error) {
+        toast.error(error.message);
+    }
+   }
+   useEffect(() => {
+    if (user){
+        fetchUser();
+    }
+   }, [user])
+
+
     const value ={
-        currency, navigate, user,getToken, isArtist, setIsArtist, axios,
-        showArtistReg,setShowArtistReg,setSearchedCities, rooms, setRooms,
+        currency, navigate, user,getToken, isStudio, setIsStudio, axios,
+        showStudioReg,setShowStudioReg,setSearchedCities, rooms, setRooms,
         searchedCities
     }
 
