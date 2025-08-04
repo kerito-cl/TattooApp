@@ -20,10 +20,12 @@ const AddArtist = () => {
   const [inputs, setInputs] = useState({
     name:"",
     styles: {
-      'Traditional': false,
+      'Neo-Traditional': false,
+      'Black & Grey': false,
       'Realism': false,
+      'Japanese': false,
       'Minimalist': false,
-    ' Horror': false,
+      'Horror': false,
     },
     pricePerHour: 0,
 });
@@ -57,8 +59,10 @@ const AddArtist = () => {
         setInputs({
           name:"",
           styles: {
-            'Traditional': false,
+            'Neo-Traditional': false,
+            'Black & Grey': false,
             'Realism': false,
+            'Japanese': false,
             'Minimalist': false,
             'Horror': false,
             },

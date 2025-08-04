@@ -9,6 +9,7 @@ import {useAppContext} from './context/AppContext'
 import Layout from './pages/studio/Layout';
 import Dashboard from './pages/studio/Dashboard';
 import AddArtist from './pages/studio/AddArtist';
+import AllArtists from './pages/AllArtists';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path={'/'} element={<Home/>} />
           <Route path={'/home'} element={<Home/>} />
+          <Route path={'/artists'} element={<AllArtists/>} />
           <Route path='/studios' element={<Layout/>}>
           <Route index element={<Dashboard/>} />
           <Route path='/studios/add-artist' element={<AddArtist/>}/>

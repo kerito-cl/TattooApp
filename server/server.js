@@ -10,6 +10,7 @@ import User from "./models/User.js";
 import studioRouter from "./routes/studioRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import artistRouter from "./routes/artistRoutes.js";
+import bookingRouter from "./routes/bookingRoutes.js";
 
 
 
@@ -42,6 +43,8 @@ app.post("/api/clerk", clerkWebHooks);
 app.use("/api/studios", studioRouter)
 app.use('/api/user', userRouter);
 app.use('/api/artists', artistRouter);
+app.use('/api/bookings', bookingRouter);
+
 app.get("/", (req, res) => res.send("API is working fine"));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
