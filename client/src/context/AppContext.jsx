@@ -18,7 +18,27 @@ export const AppProvider = ({children}) => {
    const [isStudio, setIsStudio] = useState();
    const [showStudioReg, setShowStudioReg] = useState(false);
    const [searchedCities, setSearchedCities] = useState([]);
-   const [rooms, setRooms] = useState([]);
+   const [artists, setArtists] = useState([]);
+
+
+
+    const fetchArtists = async () => {
+        try {
+        const {data} = await axios.get('/api/artists')
+        if (data.success){
+            setArtists(data.artists)
+        }
+        else{
+            toast.error(data.message)
+        }
+        } catch (error) {
+            toast.error(error.message)
+        }
+        }
+    useEffect(() => {
+        fetchArtists();
+   }, [])
+
 
 
       const fetchUser = async () => {
@@ -48,7 +68,7 @@ export const AppProvider = ({children}) => {
 
     const value ={
         currency, navigate, user,getToken, isStudio, setIsStudio, axios,
-        showStudioReg,setShowStudioReg,setSearchedCities, rooms, setRooms,
+        showStudioReg,setShowStudioReg,setSearchedCities, artists, setArtists,
         searchedCities
     }
 

@@ -6,7 +6,7 @@ import {v2 as cloudinary } from "cloudinary";
 export const createArtist = async (req, res) => {
     try {
         console.log("Studio Found")
-        const {styles, pricePerHour} = req.body;
+        const {name,styles, pricePerHour} = req.body;
         const studio = await Studio.findOne({owner: req.auth.userId})
 
         if (!studio){
@@ -21,6 +21,7 @@ export const createArtist = async (req, res) => {
 
         const parsedStyles = JSON.parse(styles);
         await Artist.create({
+            name:name,
             studio:studio._id,
             styles:parsedStyles,
             pricePerHour:+pricePerHour,

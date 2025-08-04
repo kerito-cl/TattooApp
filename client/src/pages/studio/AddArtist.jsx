@@ -18,6 +18,7 @@ const AddArtist = () => {
     4: null,
   })
   const [inputs, setInputs] = useState({
+    name:"",
     styles: {
       'Traditional': false,
       'Realism': false,
@@ -33,7 +34,7 @@ const AddArtist = () => {
   const onSubmitHandler = async (e) => {
 
     e.preventDefault()
-    if (!inputs.styles || !inputs.pricePerHour || !Object.values(images).some(image => image)){
+    if ( !inputs.name|| !inputs.styles || !inputs.pricePerHour || !Object.values(images).some(image => image)){
       toast.error("Please fill in all the details");
       return ;
     }
@@ -41,6 +42,7 @@ const AddArtist = () => {
     try {
       const formData = new FormData();
       const styles = Object.keys(inputs.styles).filter(key => inputs.styles[key])
+      formData.append('name',inputs.name)
       formData.append('styles', JSON.stringify(styles))
       formData.append('pricePerHour', inputs.pricePerHour)
 
@@ -51,9 +53,9 @@ const AddArtist = () => {
       const { data} = await axios.post('/api/artists/', formData, {headers:{Authorization:`Bearer ${await getToken()}`}}) 
 
       if (data.success){
-        console.log("holaaaa")
         toast.success(data.message)
         setInputs({
+          name:"",
           styles: {
             'Traditional': false,
             'Realism': false,
@@ -82,6 +84,11 @@ const AddArtist = () => {
     <form onSubmit={onSubmitHandler} action="">
       <Title align='left' font='outfit' title='Add Artist' subTitle={text}/>
       {/* */}
+
+
+      <p className='text-gray-800 mt-10'>Artist Name</p>
+      <input type="text" placeholder='Name' className='border border-gray-300 mt-1 rounded p-2 w-60'
+      value={inputs.name} onChange={e=>setInputs({...inputs, name:e.target.value})}/>
       <p className='text-gray-800 mt-10'>Images</p>
       <div className='grid grid-cols-2 sm:flex gap-4 my-2 flex-wrap'>
         {Object.keys(images).map((key) => 
