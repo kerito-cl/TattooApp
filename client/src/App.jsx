@@ -10,6 +10,7 @@ import Layout from './pages/studio/Layout';
 import Dashboard from './pages/studio/Dashboard';
 import AddArtist from './pages/studio/AddArtist';
 import AllArtists from './pages/AllArtists';
+import ArtistDetails from './pages/ArtistDetails';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path={'/'} element={<Home/>} />
           <Route path={'/home'} element={<Home/>} />
           <Route path={'/artists'} element={<AllArtists/>} />
+          <Route path={'/artists/:id'} element={<ArtistDetails/>} />
           <Route path='/studios' element={<Layout/>}>
           <Route index element={<Dashboard/>} />
           <Route path='/studios/add-artist' element={<AddArtist/>}/>

@@ -39,6 +39,9 @@ import totalBookingIcon from "./totalBookingIcon.svg";
 import totalRevenueIcon from "./totalRevenueIcon.svg";
 import clerk from "./Clerk.svg";
 
+import { Skull, Brush, Camera, Fan, Circle, Palette } from "lucide-react";
+
+
 
 export const assets = {
     logo,
@@ -104,7 +107,6 @@ export const facilityIcons = {
     "Mountain View": assets.mountainIcon,
     "Pool Access": assets.poolIcon,
 };
-
 // For Room Details Page
 export const roomCommonData = [
     { icon: assets.homeIcon, title: "Clean & Safe Stay", description: "A well-maintained and hygienic space just for you." },

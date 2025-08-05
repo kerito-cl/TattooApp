@@ -97,7 +97,7 @@ const AllArtists = () => {
           {filteredArtists.map((artist) => (
             <div key={artist._id} className='flex flex-col md:flex-row items-start py-10 gap-6 border-b border-gray-700 last:border-0'>
               <img
-                onClick={() => { navigate(`/studios/${artist._id}`); scrollTo(0, 0); }}
+                onClick={() => { navigate(`/artists/${artist._id}`); scrollTo(0, 0); }}
                 src={artist.images[0]} alt='artist' title='View Artist'
                 className='w-full md:w-1/2 h-60 rounded-xl object-cover shadow-lg cursor-pointer'
               />
@@ -106,7 +106,7 @@ const AllArtists = () => {
                 <p className='text-red-400 uppercase text-xs font-medium'>{artist.styles.join(', ')}</p>
                 <p
                   className='text-2xl font-semibold text-white cursor-pointer hover:underline'
-                  onClick={() => { navigate(`/studios/${artist._id}`); scrollTo(0, 0); }}
+                  onClick={() => { navigate(`/artists/${artist._id}`); scrollTo(0, 0); }}
                 >
                   {artist.name}
                 </p>
