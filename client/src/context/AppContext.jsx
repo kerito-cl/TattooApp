@@ -48,6 +48,8 @@ export const AppProvider = ({children}) => {
         if (data){
             setIsStudio(data.role === "studio");
             setSearchedCities(data.recentSearchedCities)
+            console.log(data.recentSearchedCities)
+            console.log("data found")
         }
         else{
             setTimeout(() => {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import ArtistSearchForm from './ArtistSearchForm'
 
 const containerVariants = {
   hidden: {},
@@ -44,6 +45,7 @@ const Hero = () => {
         Find the right artist, book with ease, and wear your story proudly.
       </motion.p>
 
+      <ArtistSearchForm/>
       <motion.div variants={itemVariants} className="w-full mt-8">
       </motion.div>
     </motion.div>

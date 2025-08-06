@@ -5,7 +5,7 @@ import { assets } from '../assets/assets'
 const StudioCard = ({ artist, index }) => {
   return (
     <Link 
-      to={`/studios/${artist._id}`} 
+      to={`/artists/${artist._id}`} 
       onClick={() => scrollTo(0, 0)}
       key={artist._id}
       className='relative w-full max-w-72 rounded-2xl overflow-hidden 

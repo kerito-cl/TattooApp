@@ -11,6 +11,7 @@ import Dashboard from './pages/studio/Dashboard';
 import AddArtist from './pages/studio/AddArtist';
 import AllArtists from './pages/AllArtists';
 import ArtistDetails from './pages/ArtistDetails';
+import MyBookings from './pages/MyBookings';
 
 
 function App() {
@@ -31,9 +32,10 @@ function App() {
           <Route path={'/home'} element={<Home/>} />
           <Route path={'/artists'} element={<AllArtists/>} />
           <Route path={'/artists/:id'} element={<ArtistDetails/>} />
-          <Route path='/studios' element={<Layout/>}>
-          <Route index element={<Dashboard/>} />
-          <Route path='/studios/add-artist' element={<AddArtist/>}/>
+          <Route path='/my-bookings' element={<MyBookings/>} />
+            <Route path='/studios' element={<Layout/>}>
+            <Route index element={<Dashboard/>} />
+            <Route path='/studios/add-artist' element={<AddArtist/>}/>
           </Route>
         </Routes>
         </div>

@@ -25,7 +25,6 @@ const Navbar = () => {
   const { openSignIn } = useClerk();
   const location = useLocation();
   const {user, navigate, isStudio, setShowStudioReg} = useAppContext();
-  console.log(isStudio);
 
 
   useEffect(() => {
