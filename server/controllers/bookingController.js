@@ -1,6 +1,6 @@
-import Booking from "../models/Booking.js"
-import Artist from "../models/Artist.js"
-import Studio from "../models/Studio.js"
+import {Booking} from "../models/Booking.js"
+import {Artist} from "../models/Artist.js"
+import {Studio} from "../models/Studio.js"
 import transporter from "../configs/nodemailer.js";
 
 
@@ -133,3 +133,33 @@ export const getStudioBookings = async (req,res) => {
         res.json({success:false, message:error.message})
     }
 }
+
+export const cancelBooking = async (req, res) => {
+    try {
+        const bookingId = req.params.id;
+        const userId = req.user._id; // from protect middleware
+
+        const booking = await Booking.findById(bookingId);
+        if (!booking) {
+            return res.status(404).json({ success: false, message: "Booking not found" });
+        }
+
+        // Optional: Check if user is allowed to cancel it
+        if (booking.user !== userId && booking.studio !== userId) {
+            return res.status(403).json({ success: false, message: "Not authorized to cancel this booking" });
+        }
+
+        // Only allow cancelling if not already cancelled
+        if (booking.status === "cancelled") {
+            return res.status(400).json({ success: false, message: "Booking already cancelled" });
+        }
+
+        booking.status = "cancelled";
+        await booking.save();
+
+        res.json({ success: true, message: "Booking cancelled successfully", booking });
+    } catch (error) {
+        console.error("Cancel booking error:", error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+};

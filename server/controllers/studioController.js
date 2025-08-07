@@ -1,5 +1,5 @@
-import Studio from "../models/Studio.js";
-import User from "../models/User.js"
+import {Studio} from "../models/Studio.js";
+import {User} from "../models/User.js"
 
 
 export const registerStudio = async (req, res) => {

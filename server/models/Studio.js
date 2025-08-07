@@ -9,7 +9,4 @@ const studioSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 
-const Studio = mongoose.model("Studio", studioSchema);
-
-
-export default Studio;
+export const Studio = mongoose.model("Studio", studioSchema);

@@ -59,9 +59,9 @@ const AllArtists = () => {
   };
 
   const filterByLocation = (artist) => {
-    const city = searchParams.get('city');
-    if (!city) return true;
-    return artist.studio.address.toLowerCase().includes(city.toLowerCase());
+    const destination = searchParams.get('destination');
+    if (!destination) return true;
+    return artist.studio.city.toLowerCase().includes(destination.toLowerCase());
   };
 
   const filteredArtists = useMemo(() => {
@@ -79,8 +79,7 @@ const AllArtists = () => {
   return (
     <div
       className='relative min-h-screen pt-28 px-4 md:px-16 lg:px-24 xl:px-32 bg-cover bg-center'
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
+      style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className='absolute inset-0 bg-black/60 z-0' />
 
       <div className='relative z-10 flex flex-col-reverse lg:flex-row items-start justify-between'>

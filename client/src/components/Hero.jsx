@@ -44,9 +44,8 @@ const Hero = () => {
       >
         Find the right artist, book with ease, and wear your story proudly.
       </motion.p>
-
-      <ArtistSearchForm/>
-      <motion.div variants={itemVariants} className="w-full mt-8">
+      <motion.div variants={itemVariants} className="w-78 mt-8">
+        <ArtistSearchForm/>
       </motion.div>
     </motion.div>
   )

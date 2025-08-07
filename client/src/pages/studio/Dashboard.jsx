@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets'
 import {useAppContext} from '../../context/AppContext'
 import toast from 'react-hot-toast'
 
-const text = "Monitor your room listings, track bookings and analyze revenue-all in one place. Stay updated with read-time insights to ensure smooth operations."
+const text ="Track bookings and analyze revenue-all in one place. Stay updated with read-time insights to ensure smooth operations."
 
 const Dashboard = () => {
 
@@ -16,6 +16,27 @@ const Dashboard = () => {
   })
 
 
+const fetchDashboardData = async () => {
+
+    try {
+
+      const { data} = await axios.get('/api/bookings/studio', {headers:{Authorization:`Bearer ${await getToken()}`}}) 
+      if (data.success){
+        setDashBoardData(data.dashboardData);
+      }
+      else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+        toast.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      fetchDashboardData();
+    }
+  },[user])
 
   return (
     <div>
@@ -48,7 +69,7 @@ const Dashboard = () => {
                 <tr>
                   <th className='py-3 px-4 text-gray-800 font-medium'>User Name</th>
                   <th className='py-3 px-4 text-gray-800 font-medium
-                  max-sm:hidden'>Room Name</th>
+                  max-sm:hidden'>Artist Name</th>
                   <th className='py-3 px-4 text-gray-800 font-medium text-center'>Total Amount</th>
                   <th className='py-3 px-4 text-gray-800 font-medium text-center'>Payment Status</th>
                 </tr>
@@ -61,7 +82,7 @@ const Dashboard = () => {
                     {item.user.username}
                   </td>
                   <td className='py-3 px-3 text-gray-700 border-t border-gray-300 max-sm:hidden'>
-                    {item.room.roomType}
+                    {item.artist.name}
                   </td>
                   <td className='py-3 px-3 text-gray-700 border-t border-gray-300 text-center'>
                     {currency} {item.totalPrice}

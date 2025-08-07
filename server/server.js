@@ -6,7 +6,7 @@ import connectCloudinary from "./configs/cloudinary.js";
 import { clerkMiddleware } from "@clerk/express";
 import clerkWebHooks from "./controllers/clerkWebHooks.js";
 import getRawBody from "raw-body";
-import User from "./models/User.js";
+import {User} from "./models/User.js";
 import studioRouter from "./routes/studioRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import artistRouter from "./routes/artistRoutes.js";

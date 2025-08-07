@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import {assets, roomCommonData} from '../assets/assets'
+import {assets } from '../assets/assets'
 import StarRating from '../components/StarRating';
 import { useAppContext } from '../context/AppContext'
 import toast from 'react-hot-toast';
@@ -14,6 +14,8 @@ const styleIcons = {
   "Minimalist": <Circle />,
   "Horror": <Skull />,
 };
+
+
 const ArtistDetails = () => {
     const {id} = useParams();
     const {artists, getToken, axios, navigate} = useAppContext();
@@ -100,7 +102,6 @@ const ArtistDetails = () => {
         {/*artist details*/}
         <div className='flex flex-col md:flex-row items-start md:items-center gap-2'>
             <h1 className='text-3xl md:text-4xl font-sans'>{artist.name} <span className='font-sans text-sm'>{artist.studio.name} Studio</span></h1>
-            <p className='text-s font-serif py-1.5 px-2.5 text-white bg-orange-500 rounded-full'>20% OFF</p>
         </div >
         {/*artist rating*/}
         <div className='flex items-center gap-1 mt-2'>
@@ -125,7 +126,7 @@ const ArtistDetails = () => {
                 ))}
             </div>
         </div>
-        {/*Room Highlights */}
+        {/*Artist Highlights */}
         <div className='flex flex-col md:flex-row md:justify-between mt-10'>
             <div className='flex flex-col'>
                 <div className='flex flex-wrap items-center mt-3 mb-6 gap-4'>
@@ -177,34 +178,13 @@ const ArtistDetails = () => {
         {isAvailable ? "Book Now" : "Check Availability"}
     </button>
     </form>
-
-            {/* common specifications */}
-            <div className='mt-25 space-y-4'>
-                {roomCommonData.map((spec, index)=>(
-                    <div key={index} className='flex items-start gap-2'>
-                        <img src={spec.icon} alt={`${spec.title}-icon`} className='w-6.5' />
-                        <div>
-                            <p className='text-base'>{spec.title}</p>
-                            <p className='text-gray-500'>{spec.description}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <div className='max-w-3xl border-y border-gray-300 my-15 py-10 text-gray-500'>
-                <p> Guests will be allocated on the ground floor according to availability.
-                    You get a comfortable Two bedroom apartment has a true city feeling. The 
-                    price quoted is for two guest, at the guest slot please mark the number of
-                    guests to get the exact price for groups. The Guests will be allocated ground floor
-                    according to availability. You get the comfortable two bedroom apartment that has a true city feeling.
-                </p>
-            </div>
             {/*Hosted by */}
 
-            <div className='flex flex-col item-start gap-4'>
+            <div className='flex flex-col item-start gap-4 mt-5'>
                 <div className='flex gap-4'>
                     <img src={artist.studio.owner.image} alt='Host' className='h-14 w-14 md:h-18 md:w-18 rounded-full'/>
                     <div>
-                        <p className='text-lg md:text-xl'>Hoster by {artist.studio.name}</p>
+                        <p className='text-lg md:text-xl'>Hosted by {artist.studio.name}</p>
                         <div className='flex items-center mt-1'>
                             <StarRating/>
                             <p className='ml-2'>200+ reviews</p>

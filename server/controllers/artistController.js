@@ -1,5 +1,5 @@
-import Studio from "../models/Studio.js";
-import Artist from "../models/Artist.js";
+import {Studio} from "../models/Studio.js";
+import {Artist} from "../models/Artist.js";
 import {v2 as cloudinary } from "cloudinary";
 
 
@@ -56,7 +56,7 @@ export const getArtists = async (req, res) => {
 export const getStudioArtist = async (req, res) => {
     try {
         const studioData = await Studio.findOne({owner: req.auth.userId})
-        const artists = await Artist.find({artist:studioData._id.toString()}).populate("studio");
+        const artists = await Artist.find({studio:studioData._id.toString()}).populate("studio");
         res.json({success:true, artists})
         
     } catch (error) {

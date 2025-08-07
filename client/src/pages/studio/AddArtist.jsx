@@ -4,7 +4,7 @@ import {assets} from '../../assets/assets'
 import {useAppContext} from '../../context/AppContext'
 import toast from 'react-hot-toast'
 
-const text = "Fill in the details carefully and accurate room details, pricing, and features, to enhance the user booking experience."
+const text = "Fill in the details carefully and accurate artist details, pricing, and features, to enhance the user booking experience."
 
 
 const AddArtist = () => {
