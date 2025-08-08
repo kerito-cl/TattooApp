@@ -1,4 +1,4 @@
-import logo from './logo.svg'
+import logo from './BookInk.png'
 import searchIcon from './searchIcon.svg'
 import userIcon from './userIcon.svg'
 import calenderIcon from './calenderIcon.svg'
@@ -39,7 +39,6 @@ import totalBookingIcon from "./totalBookingIcon.svg";
 import totalRevenueIcon from "./totalRevenueIcon.svg";
 import clerk from "./Clerk.svg";
 
-import { Skull, Brush, Camera, Fan, Circle, Palette } from "lucide-react";
 
 
 

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation} from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {useAppContext} from '../context/AppContext'
+import { assets } from '../assets/assets';
 
 
 const BookIcon = () => (
@@ -54,7 +55,7 @@ const Navbar = () => {
           initial={false}
           animate={{ scale: isScrolled ? 0.85 : 1 }}
           transition={{ type: 'spring', stiffness: 200 }}
-          src="src/assets/BookInk.png"
+          src={assets.logo}
           alt="logo"
           className={`h-20 ${isScrolled && 'invert opacity-90'}`}
         />
@@ -78,7 +79,7 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        <img src="src/assets/searchIcon.svg" alt="search" className={`${isScrolled && 'invert'} h-9 transition-colors duration-500`} />
+        <img src={assets.searchIcon} alt="search" className={`${isScrolled && 'invert'} h-9 transition-colors duration-500`} />
         {user ? (
           <UserButton>
             <UserButton.MenuItems>
@@ -101,7 +102,7 @@ const Navbar = () => {
             </UserButton.MenuItems>
           </UserButton>
         )}
-        <img onClick={() => setIsMenuOpen(!isMenuOpen)} src="src/assets/menuIcon.svg" className={`${isScrolled && 'invert'} h-4 transition-colors duration-500`} />
+        <img onClick={() => setIsMenuOpen(!isMenuOpen)} src={assets.menuIcon} className={`${isScrolled && 'invert'} h-4 transition-colors duration-500`} />
       </div>
 
       {/* Mobile Menu */}
@@ -115,7 +116,7 @@ const Navbar = () => {
             className="fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 z-50"
           >
             <button className="absolute top-4 right-4" onClick={() => setIsMenuOpen(false)}>
-              <img src="src/assets/closeIcon.svg" alt="close-menu" className="h-6.5" />
+              <img src={assets.closeIcon} alt="close-menu" className="h-6.5" />
             </button>
 
             {navLinks.map((link, i) => (
