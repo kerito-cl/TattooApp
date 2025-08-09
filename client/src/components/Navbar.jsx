@@ -92,7 +92,7 @@ const Navbar = () => {
             </UserButton.MenuItems>
           </UserButton>
         )}
-        <img onClick={() => setIsMenuOpen(!isMenuOpen)} src={assets.menuIcon} className="h-4 transition-colors duration-500 invert" />
+        <img onClick={() => setIsMenuOpen(!isMenuOpen)} src={assets.menuIcon} className="h-4 transition-colors duration-500" />
       </div>
 
       {/* Mobile Menu */}
