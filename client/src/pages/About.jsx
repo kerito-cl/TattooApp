@@ -22,7 +22,7 @@ const About = () => {
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.7 }}
             className="text-gray-300 text-base md:text-lg leading-relaxed"
           >
             Our platform connects you with top tattoo artists from around the world. Whether you're looking for bold traditional, fine-line minimalism, or full-body custom work, we're here to make your ink journey seamless and inspiring.
